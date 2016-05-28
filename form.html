@@ -1,0 +1,54 @@
+<html>
+<title>vue.js-demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="vue.js"></script>
+<body>
+    <form id="demo">
+        <!-- text -->
+        <p>
+            <input type="text" v-model="msg"> {{msg}}
+        </p>
+        <!-- checkbox -->
+        <p>
+            <input type="checkbox" v-model="checked"> {{checked ? "yes" : "no"}}
+        </p>
+        <!-- radio buttons -->
+        <p>
+            <input type="radio" name="picked" value="one" v-model="picked">
+            <input type="radio" name="picked" value="two" v-model="picked"> {{picked}}
+        </p>
+        <!-- select -->
+        <p>
+            <select v-model="selectM1_selected">
+            	<option value="">请选择</option>
+                <option v-for="item in selectM1" value="{{item.value}}">{{item.text}}</option>
+            </select>
+            {{selectM1_selected}}
+        </p>
+        <!-- multiple select -->
+        <p>
+            <select v-model="selectM2_selected" multiple>
+            	<option v-for="(index,item) in selectM2" value="{{item.value}}">{{item.text}}</option>
+        	</select>
+        </p>
+        <p><pre>data: {{$data | json 4}}</pre></p>
+    </form>
+</body>
+
+</html>
+<script type="text/javascript">
+Vue.config.debug = true;
+var vm=new Vue({
+    el: '#demo',
+    data: {
+        msg: 'hi!',
+        checked: true,
+        picked: 'one',
+        multiSelect: ['one','two', 'three'],
+        selectM1:[{text:'中国',value:'zg'},{text:'韩国',value:'hg'}],
+        selectM1_selected:'zg',
+        selectM2:[{text:'第一个',value:'first'},{text:'第二个',value:'two'}],
+        selectM2_selected:""
+    }
+});
+</script>
